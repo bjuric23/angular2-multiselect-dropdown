@@ -83,11 +83,11 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
     @ViewChild('dropdownList') dropdownListElem: ElementRef;
 
     @HostListener('document:keyup.escape', ['$event'])
-	onEscapeDown(event: KeyboardEvent) {
-		if (this.settings.escapeToClose) {
-			this.closeDropdown();
-		}
-	}
+    onEscapeDown(event: KeyboardEvent) {
+        if (this.settings.escapeToClose) {
+            this.closeDropdown();
+        }
+    }
 
     filterPipe: ListFilterPipe;
     public selectedItems: Array<any>;
@@ -179,8 +179,8 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
 
         });
         setTimeout(() => {
-			this.calculateDropdownDirection();
-		}); 
+            this.calculateDropdownDirection();
+        });
 
     }
     ngOnChanges(changes: SimpleChanges) {
@@ -260,7 +260,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
     private onChangeCallback: (_: any) => void = noop;
 
     writeValue(value: any) {
-        if (value !== undefined && value !== null  && value !== '') {
+        if (value !== undefined && value !== null && value !== '') {
             if (this.settings.singleSelection) {
                 try {
 
@@ -353,7 +353,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         setTimeout(() => {
             this.calculateDropdownDirection();
         }, 0);
-        
+
         evt.preventDefault();
     }
     public openDropdown() {
@@ -361,12 +361,12 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
             return false;
         }
         this.isActive = true;
-            if (this.settings.searchAutofocus && this.searchInput && this.settings.enableSearchFilter && !this.searchTempl) {
-                setTimeout(() => {
-                    this.searchInput.nativeElement.focus();
-                }, 0);
-            }
-            this.onOpen.emit(true);
+        if (this.settings.searchAutofocus && this.searchInput && this.settings.enableSearchFilter && !this.searchTempl) {
+            setTimeout(() => {
+                this.searchInput.nativeElement.focus();
+            }, 0);
+        }
+        this.onOpen.emit(true);
     }
     public closeDropdown() {
         if (this.searchInput && this.settings.lazyLoading) {
@@ -536,7 +536,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         var key = this.settings.groupBy;
         this.groupedData.forEach((obj: any) => {
             var cnt = 0;
-            if (obj.grpTitle && ( item[key] == obj[key])) {
+            if (obj.grpTitle && (item[key] == obj[key])) {
                 if (obj.list) {
                     obj.list.forEach((el: any) => {
                         if (this.isSelected(el)) {
@@ -545,10 +545,10 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
                     });
                 }
             }
-            if (obj.list && (cnt === obj.list.length) && ( item[key] == obj[key])) {
+            if (obj.list && (cnt === obj.list.length) && (item[key] == obj[key])) {
                 obj.selected = true;
             }
-            else if (obj.list && (cnt != obj.list.length) && ( item[key] == obj[key])){
+            else if (obj.list && (cnt != obj.list.length) && (item[key] == obj[key])) {
                 obj.selected = false;
             }
         });
@@ -589,14 +589,14 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
             this.data = this.cachedItems.slice();
         }
 
-        if ((evt.target.value != null || evt.target.value != '' )  && !this.settings.groupBy) {
+        if ((evt.target.value != null || evt.target.value != '') && !this.settings.groupBy) {
             if (this.settings.searchBy.length > 0) {
                 for (var t = 0; t < this.settings.searchBy.length; t++) {
 
                     this.data.filter((el: any) => {
-                            if (el[this.settings.searchBy[t].toString()].toString().toLowerCase().indexOf(evt.target.value.toString().toLowerCase()) >= 0) {
-                                filteredElems.push(el);
-                            }
+                        if (el[this.settings.searchBy[t].toString()].toString().toLowerCase().indexOf(evt.target.value.toString().toLowerCase()) >= 0) {
+                            filteredElems.push(el);
+                        }
                     });
                     /*                    if (filter && item[searchBy[t]] && item[searchBy[t]] != "") {
                                             if (item[searchBy[t]].toString().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
@@ -676,44 +676,44 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         }
 
     }
-    addFilterNewItem(){
+    addFilterNewItem() {
         this.onAddFilterNewItem.emit(this.filter);
         this.filterPipe = new ListFilterPipe(this.ds);
         this.filterPipe.transform(this.data, this.filter, this.settings.searchBy);
     }
     calculateDropdownDirection() {
-		let shouldOpenTowardsTop = this.settings.position == 'top';
-		if (this.settings.autoPosition) {
-			const dropdownHeight = this.dropdownListElem.nativeElement.clientHeight;
-			const viewportHeight = document.documentElement.clientHeight;
-			const selectedListBounds = this.selectedListElem.nativeElement.getBoundingClientRect();
-			
-			const spaceOnTop: number = selectedListBounds.top;
-			const spaceOnBottom: number = viewportHeight - selectedListBounds.top;
-			if (spaceOnBottom < spaceOnTop && dropdownHeight < spaceOnTop){
+        let shouldOpenTowardsTop = this.settings.position == 'top';
+        if (this.settings.autoPosition) {
+            const dropdownHeight = this.dropdownListElem.nativeElement.clientHeight;
+            const viewportHeight = document.documentElement.clientHeight;
+            const selectedListBounds = this.selectedListElem.nativeElement.getBoundingClientRect();
+
+            const spaceOnTop: number = selectedListBounds.top;
+            const spaceOnBottom: number = viewportHeight - selectedListBounds.top;
+            if (spaceOnBottom < spaceOnTop && dropdownHeight < spaceOnTop) {
                 this.openTowardsTop(true);
             }
             else {
                 this.openTowardsTop(false);
             }
-			// Keep preference if there is not enough space on either the top or bottom
-/* 			if (spaceOnTop || spaceOnBottom) {
-				if (shouldOpenTowardsTop) {
-					shouldOpenTowardsTop = spaceOnTop;
-				} else {
-					shouldOpenTowardsTop = !spaceOnBottom;
-				}
-			} */
-		}
-		
-	}
-	openTowardsTop(value: boolean) {
-		if (value && this.selectedListElem.nativeElement.clientHeight) {
+            // Keep preference if there is not enough space on either the top or bottom
+            /* 			if (spaceOnTop || spaceOnBottom) {
+                            if (shouldOpenTowardsTop) {
+                                shouldOpenTowardsTop = spaceOnTop;
+                            } else {
+                                shouldOpenTowardsTop = !spaceOnBottom;
+                            }
+                        } */
+        }
+
+    }
+    openTowardsTop(value: boolean) {
+        if (value && this.selectedListElem.nativeElement.clientHeight) {
             this.dropdownListYOffset = 15 + this.selectedListElem.nativeElement.clientHeight;
         } else {
-			this.dropdownListYOffset = 0;
-		}
-	}
+            this.dropdownListYOffset = 0;
+        }
+    }
 }
 
 @NgModule({

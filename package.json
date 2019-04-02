@@ -19,6 +19,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish": "npm run build angular2-multiselect-dropdown-lib && npm run build-sass && copy \"README.md\" \"dist/angular2-multiselect-dropdown/\" && copy \"LICENSE\" \"dist/angular2-multiselect-dropdown/\" && cd dist/angular2-multiselect-dropdown && npm publish",
+    "custom_pack": "npm run build angular2-multiselect-dropdown-lib && npm run build-sass && copy \"README.md\" \"dist/angular2-multiselect-dropdown/\" && copy \"LICENSE\" \"dist/angular2-multiselect-dropdown/\" && cd dist/angular2-multiselect-dropdown && npm pack",
     "build-sass": "node-sass --include-path scss src/themes/default.theme.scss dist/angular2-multiselect-dropdown/themes/default.theme.css",
     "github-pages": "ng build --aot --base-href /angular2-multiselect-dropdown/"
   },
