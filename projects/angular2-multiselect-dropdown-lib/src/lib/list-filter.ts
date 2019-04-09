@@ -31,7 +31,7 @@ export class ListFilterPipe implements PipeTransform {
             else {
                 for (var t = 0; t < searchBy.length; t++) {
                     if (filter && item[searchBy[t]] && item[searchBy[t]] != "") {
-                        if (item[searchBy[t]].toString().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+                        if (item[searchBy[t]].toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
                             found = true;
                         }
                     }
@@ -45,7 +45,7 @@ export class ListFilterPipe implements PipeTransform {
             else {
                 for (var prop in item) {
                     if (filter && item[prop]) {
-                        if (item[prop].toString().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
+                        if (item[prop].toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(filter.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
                             found = true;
                         }
                     }

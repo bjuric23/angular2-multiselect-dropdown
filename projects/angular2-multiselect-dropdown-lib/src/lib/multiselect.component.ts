@@ -594,22 +594,17 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
                 for (var t = 0; t < this.settings.searchBy.length; t++) {
 
                     this.data.filter((el: any) => {
-                        if (el[this.settings.searchBy[t].toString()].toString().toLowerCase().indexOf(evt.target.value.toString().toLowerCase()) >= 0) {
+                        if (el[this.settings.searchBy[t].toString()].toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(evt.target.value.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
                             filteredElems.push(el);
                         }
                     });
-                    /*                    if (filter && item[searchBy[t]] && item[searchBy[t]] != "") {
-                                            if (item[searchBy[t]].toString().toLowerCase().indexOf(filter.toLowerCase()) >= 0) {
-                                                found = true;
-                                            }
-                                        }*/
                 }
 
             }
             else {
                 this.data.filter(function (el: any) {
                     for (var prop in el) {
-                        if (el[prop].toString().toLowerCase().indexOf(evt.target.value.toString().toLowerCase()) >= 0) {
+                        if (el[prop].toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(evt.target.value.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
                             filteredElems.push(el);
                             break;
                         }
@@ -627,7 +622,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
                 }
                 else {
                     for (var prop in el) {
-                        if (el[prop].toString().toLowerCase().indexOf(evt.target.value.toString().toLowerCase()) >= 0) {
+                        if (el[prop].toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "").indexOf(evt.target.value.toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, "")) >= 0) {
                             filteredElems.push(el);
                             break;
                         }
@@ -682,7 +677,6 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         this.filterPipe.transform(this.data, this.filter, this.settings.searchBy);
     }
     calculateDropdownDirection() {
-        let shouldOpenTowardsTop = this.settings.position == 'top';
         if (this.settings.autoPosition) {
             const dropdownHeight = this.dropdownListElem.nativeElement.clientHeight;
             const viewportHeight = document.documentElement.clientHeight;
@@ -696,16 +690,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
             else {
                 this.openTowardsTop(false);
             }
-            // Keep preference if there is not enough space on either the top or bottom
-            /* 			if (spaceOnTop || spaceOnBottom) {
-                            if (shouldOpenTowardsTop) {
-                                shouldOpenTowardsTop = spaceOnTop;
-                            } else {
-                                shouldOpenTowardsTop = !spaceOnBottom;
-                            }
-                        } */
         }
-
     }
     openTowardsTop(value: boolean) {
         if (value && this.selectedListElem.nativeElement.clientHeight) {
