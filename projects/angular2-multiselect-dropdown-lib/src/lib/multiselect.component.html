@@ -110,7 +110,7 @@
                 <ul class="lazyContainer">
                     <li *ngFor="let item of data | listFilter:filter : settings.searchBy; let i = index;"
                         (click)="onItemClick(item,i,$event)" class="pure-checkbox"
-                        [ngClass]="{'selected-item': isSelected(item) == true }">
+                        [ngClass]="{'selected-item': isSelected(item) == true }" #listItem>
                         <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                             [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                         <label>{{item[settings.labelKey]}}</label>
@@ -124,7 +124,7 @@
                     <ul class="lazyContainer">
                         <li *ngFor="let item of viewPortItems | listFilter:filter : settings.searchBy; let i = index;"
                             (click)="onItemClick(item,i,$event)" class="pure-checkbox"
-                            [ngClass]="{'selected-item': isSelected(item) == true }">
+                            [ngClass]="{'selected-item': isSelected(item) == true }" #listItem>
                             <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                                 [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                             <label>{{item.id}} {{item[settings.labelKey]}}</label>
@@ -137,7 +137,7 @@
                 <ul class="lazyContainer">
                     <li *ngFor="let item of data | listFilter:filter : settings.searchBy; let i = index;"
                         (click)="onItemClick(item,i,$event)" class="pure-checkbox"
-                        [ngClass]="{'selected-item': isSelected(item) == true }">
+                        [ngClass]="{'selected-item': isSelected(item) == true }" #listItem>
                         <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                             [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                         <label></label>
@@ -153,7 +153,7 @@
                     <ul class="lazyContainer">
                         <li *ngFor="let item of viewPortItems | listFilter:filter : settings.searchBy; let i = index;"
                             (click)="onItemClick(item,i,$event)" class="pure-checkbox"
-                            [ngClass]="{'selected-item': isSelected(item) == true }">
+                            [ngClass]="{'selected-item': isSelected(item) == true }" #listItem>
                             <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                                 [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                             <label></label>
@@ -171,7 +171,7 @@
                             *ngFor="let item of viewPortItems | listFilter:filter : settings.searchBy; let i = index;">
                             <li (click)="onItemClick(item,i,$event)" *ngIf="!item.grpTitle"
                                 [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle}"
-                                class="pure-checkbox">
+                                class="pure-checkbox" #listItem>
                                 <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                                     [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                                 <label></label>
@@ -194,7 +194,7 @@
                 <ul class="lazyContainer">
                     <span *ngFor="let item of groupedData | listFilter:filter : settings.searchBy; let i = index;">
                         <li (click)="onItemClick(item,i,$event)" *ngIf="!item.grpTitle"
-                            [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle}" class="pure-checkbox">
+                            [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle}" class="pure-checkbox" #listItem>
                             <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelected(item)"
                                 [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
                             <label></label>
@@ -218,7 +218,7 @@
                         <span *ngFor="let item of viewPortItems; let i = index;">
                             <li *ngIf="item.grpTitle"
                                 [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle, 'selected-item': isSelected(item) == true }"
-                                class="pure-checkbox">
+                                class="pure-checkbox" #listItem>
                                 <input *ngIf="settings.showCheckbox && !item.grpTitle" type="checkbox"
                                     [checked]="isSelected(item)"
                                     [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />
@@ -241,7 +241,7 @@
                 <ul class="lazyContainer">
                     <span *ngFor="let item of groupedData | listFilter:filter : settings.searchBy; let i = index;">
                         <li (click)="onItemClick(item,i,$event)" *ngIf="!item.grpTitle"
-                            [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle}" class="pure-checkbox">
+                            [ngClass]="{'grp-title': item.grpTitle,'grp-item': !item.grpTitle}" class="pure-checkbox" #listItem>
                             <input *ngIf="settings.showCheckbox && !item.grpTitle" type="checkbox"
                                 [checked]="isSelected(item)"
                                 [disabled]="settings.limitSelection == selectedItems?.length && !isSelected(item)" />

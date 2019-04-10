@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, OnDestroy, NgModule, SimpleChanges, OnChanges, ChangeDetectorRef, AfterViewChecked, ViewEncapsulation, ContentChild, ViewChild, forwardRef, Input, Output, EventEmitter, ElementRef, AfterViewInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy, NgModule, SimpleChanges, OnChanges, ChangeDetectorRef, AfterViewChecked, ViewEncapsulation, ContentChild, ViewChild, forwardRef, Input, Output, EventEmitter, ElementRef, AfterViewInit, Pipe, PipeTransform, ViewChildren } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor, NG_VALIDATORS, Validator, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MyException } from './multiselect.model';
@@ -76,7 +76,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
     @ContentChild(Item) itemTempl: Item;
     @ContentChild(Badge) badgeTempl: Badge;
     @ContentChild(Search) searchTempl: Search;
-
+    @ViewChildren('listItem') listItems: ElementRef[];
 
     @ViewChild('searchInput') searchInput: ElementRef;
     @ViewChild('selectedList') selectedListElem: ElementRef;
@@ -352,6 +352,13 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         }
         setTimeout(() => {
             this.calculateDropdownDirection();
+        }, 0);
+
+        setTimeout(() => {
+            const firstSelectedItem = this.listItems.find((e, i) => i === this.data.findIndex(d => this.isSelected(d)));
+            if (firstSelectedItem) {
+                firstSelectedItem.nativeElement.scrollIntoView(false);
+            }
         }, 0);
 
         evt.preventDefault();
