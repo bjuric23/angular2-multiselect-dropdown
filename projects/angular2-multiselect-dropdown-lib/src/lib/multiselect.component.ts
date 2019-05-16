@@ -357,7 +357,12 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         setTimeout(() => {
             const firstSelectedItem = this.listItems.find((e, i) => i === this.data.findIndex(d => this.isSelected(d)));
             if (firstSelectedItem) {
-                firstSelectedItem.nativeElement.scrollIntoView(false);
+                let acc = 0;
+                for (let i = 0; i < firstSelectedItem.nativeElement.parentElement.parentElement.parentElement.children.length - 1; i++) {
+                    const child = firstSelectedItem.nativeElement.parentElement.parentElement.parentElement.children.item(i);
+                    acc += child.clientHeight;
+                }
+                firstSelectedItem.nativeElement.parentElement.parentElement.scrollTop = firstSelectedItem.nativeElement.offsetTop - acc - 20;
             }
         }, 0);
 
