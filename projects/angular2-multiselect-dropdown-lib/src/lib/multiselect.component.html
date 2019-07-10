@@ -46,7 +46,7 @@
                 *ngIf="settings.enableCheckAll && !settings.singleSelection && !settings.limitSelection && data?.length > 0"
                 (click)="toggleSelectAll()">
                 <input *ngIf="settings.showCheckbox" type="checkbox" [checked]="isSelectAll"
-                    [disabled]="settings.limitSelection == selectedItems?.length || isItemDisabled(item)" />
+                    [disabled]="settings.limitSelection == selectedItems?.length" />
                 <label>
                     <span [hidden]="isSelectAll">{{settings.selectAllText}}</span>
                     <span [hidden]="!isSelectAll">{{settings.unSelectAllText}}</span>
@@ -79,7 +79,7 @@
                 <div class="pure-checkbox select-all" *ngIf="filter?.length > 0 && filterLength > 0"
                     (click)="toggleFilterSelectAll()">
                     <input type="checkbox" [checked]="isFilterSelectAll"
-                        [disabled]="settings.limitSelection == selectedItems?.length || isItemDisabled(item)" />
+                        [disabled]="settings.limitSelection == selectedItems?.length" />
                     <label>
                         <span [hidden]="isFilterSelectAll">{{settings.filterSelectAllText}}</span>
                         <span [hidden]="!isFilterSelectAll">{{settings.filterUnSelectAllText}}</span>
@@ -97,7 +97,7 @@
                 <div class="pure-checkbox select-all" *ngIf="filter?.length > 0 && infiniteFilterLength > 0"
                     (click)="toggleInfiniteFilterSelectAll()">
                     <input type="checkbox" [checked]="isInfiniteFilterSelectAll"
-                        [disabled]="settings.limitSelection == selectedItems?.length || isItemDisabled(item)" />
+                        [disabled]="settings.limitSelection == selectedItems?.length" />
                     <label>
                         <span [hidden]="isInfiniteFilterSelectAll">{{settings.filterSelectAllText}}</span>
                         <span [hidden]="!isInfiniteFilterSelectAll">{{settings.filterUnSelectAllText}}</span>
