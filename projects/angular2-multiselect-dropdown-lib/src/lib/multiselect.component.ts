@@ -5,7 +5,7 @@ import { MyException } from './multiselect.model';
 import { DropdownSettings } from './multiselect.interface';
 import { ClickOutsideDirective, ScrollDirective, styleDirective, setPosition } from './clickOutside';
 import { ListFilterPipe } from './list-filter';
-import { Item, Badge, Search, TemplateRenderer, CIcon } from './menu-item';
+import { Item, Badge, Search, TemplateRenderer, CIcon, DisabledCheck } from './menu-item';
 import { DataService } from './multiselect.service';
 import { Subscription } from 'rxjs';
 import { VirtualScrollComponent, ChangeEvent } from './virtual-scroll';
@@ -42,6 +42,9 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
 
     @Input()
     loading: boolean;
+
+    @Input()
+    disabledCheck: DisabledCheck;
 
     @Output('onSelect')
     onSelect: EventEmitter<any> = new EventEmitter<any>();
@@ -710,6 +713,13 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         } else {
             this.dropdownListYOffset = 0;
         }
+    }
+
+    isItemDisabled(item: any) {
+        if (this.disabledCheck != null && this.disabledCheck.performCheck != null && this.disabledCheck.performCheck instanceof Function) {
+            return this.disabledCheck.performCheck(item);
+        }
+        return false;
     }
 }
 

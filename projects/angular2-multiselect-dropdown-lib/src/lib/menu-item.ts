@@ -140,3 +140,9 @@ export class CIcon {
     @Input() name:any;
 
 }
+
+export class DisabledCheck {
+  constructor(
+    public performCheck: Function
+  ) {}
+}
