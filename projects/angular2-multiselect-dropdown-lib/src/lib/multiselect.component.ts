@@ -222,7 +222,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
         }
     }
     onItemClick(item: any, index: number, evt: Event) {
-        if (this.settings.disabled || this.disabledCheck.performCheck(item)) {
+        if (this.settings.disabled || (this.disabledCheck != null && this.disabledCheck.performCheck != null && this.disabledCheck.performCheck instanceof Function && this.disabledCheck.performCheck(item))) {
             return false;
         }
 
