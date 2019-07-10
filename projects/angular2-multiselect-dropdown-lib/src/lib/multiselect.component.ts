@@ -726,7 +726,7 @@ export class AngularMultiSelect implements OnInit, ControlValueAccessor, OnChang
 @NgModule({
     imports: [CommonModule, FormsModule],
     declarations: [AngularMultiSelect, ClickOutsideDirective, ScrollDirective, styleDirective, ListFilterPipe, Item, TemplateRenderer, Badge, Search, setPosition, VirtualScrollComponent, CIcon],
-    exports: [AngularMultiSelect, ClickOutsideDirective, ScrollDirective, styleDirective, ListFilterPipe, Item, TemplateRenderer, Badge, Search, setPosition, VirtualScrollComponent, CIcon, DisabledCheck],
+    exports: [AngularMultiSelect, ClickOutsideDirective, ScrollDirective, styleDirective, ListFilterPipe, Item, TemplateRenderer, Badge, Search, setPosition, VirtualScrollComponent, CIcon],
     providers: [DataService]
 })
 export class AngularMultiSelectModule { }

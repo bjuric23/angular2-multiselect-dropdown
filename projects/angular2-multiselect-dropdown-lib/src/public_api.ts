@@ -4,3 +4,4 @@ export { ListFilterPipe } from './lib/list-filter';
 export { Item } from './lib/menu-item';
 export { TemplateRenderer } from './lib/menu-item';
 export { AngularMultiSelectModule } from './lib/multiselect.component';
+export { DisabledCheck } from './lib/menu-item';
